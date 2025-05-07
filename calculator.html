@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./calculator.css" />
+    <title>calculator</title>
+  </head>
+  <body>
+    <section id="calculator">
+      <nav class="container">
+        <div id="value">0</div>
+      </nav>
+      <div class="pengaturan">
+        <div class="sisi-1">
+          <button onclick="Clear()" class="clear">C</button>
+          <button onclick="pengaturan('+/-')">+/-</button>
+          <button onclick="pengaturan('%')">%</button>
+          <button onclick="Pembagian('/')" class="division">/</button>
+        </div>
+        <div class="sisi-2">
+          <button onclick="pengaturan('7')">7</button>
+          <button onclick="pengaturan('8')">8</button>
+          <button onclick="pengaturan('9')">9</button>
+          <button onclick="pengaturan('*')" class="multiplication">x</button>
+        </div>
+        <div class="sisi-3">
+          <button onclick="pengaturan('4')">4</button>
+          <button onclick="pengaturan('5')">5</button>
+          <button onclick="pengaturan('6')">6</button>
+          <button onclick="pengaturan('-')" class="less">-</button>
+        </div>
+        <div class="sisi-4">
+          <button onclick="pengaturan('1')">1</button>
+          <button onclick="pengaturan('2')">2</button>
+          <button onclick="pengaturan('3')">3</button>
+          <button onclick="pengaturan('+')" class="plus">+</button>
+        </div>
+        <div class="sisi-5">
+          <button onclick="pengaturan('0')" class="nol">0</button>
+          <button onclick="pengaturan('.')" class="titik">.</button>
+          <button onclick="Hasil('=')" class="sama">=</button>
+        </div>
+      </div>
+    </section>
+    <script>
+      const display = document.getElementById("value");
+
+      // const display = document.getElementById("value");
+      function pengaturan(value) {
+        if (display.innerText === "0") {
+          display.innerText = value;
+        } else {
+          display.innerText += value;
+        }
+      }
+
+      function Clear() {
+        display.innerText = "";
+        console.log("terhapus");
+      }
+
+      function Pembagian (value){
+        display.innerText += value;
+        console.log("Terbagi");
+      }
+      function Hasil() {
+  try {
+    // Menggunakan innerText bukan value
+    display.innerText = eval(display.innerText);
+  } catch {
+    display.innerText = 'Error'; // Jika terjadi error
+  }
+}
+  
+    </script>
+  </body>
+</html>

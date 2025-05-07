@@ -1,0 +1,101 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+#calculator {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  /* padding: 10px; */
+  /* padding: 5px; */
+  /* height: 300px; */
+  border-radius: 20px;
+}
+
+.container {
+  padding-left: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  /* width: 400px; */
+  height: 300px;
+  color: #ffffff;
+  display: flex;
+  text-align: end;
+  justify-content: right;
+  /* flex-direction: column; */
+  align-items: flex-end;
+}
+button {
+  margin: 10px;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+  /* color: rgb(255, 255, 255); */
+  /* background-color: black; */
+  border-radius: 18px;
+  background: #0a0a0a;
+  color: #ffffff;
+  box-shadow: 1px 1px 5px #b1b1b1, -5px -5px 10px #ffffff;
+}
+.pengaturan {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* height: 300px; */
+  width: 400px;
+  height: 100px;
+  border-radius: 20px;
+  background-color: #f7f4f4;
+}
+.nol {
+  padding: 30px !important;
+}
+.titik {
+  padding: 30px !important;
+  background-color: #f9f100;
+  color: #020202;
+}
+.sama {
+  padding: 40px !important;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+}
+.clear{
+  background-color: #ff0000;;
+}
+.multiplication{
+  background-color: #f5ed03;
+  color: #000000;
+}
+.less{
+  background-color: #f9f100;
+  color: #000000;
+}
+.plus{
+  background-color: #f9f100;
+  color: #000000;
+}
+.division{
+  background-color: #f9f100;
+  color: #0a0a0a;
+}
+.sisi-1 {
+  /* background-color: rgb(127, 148, 252); */
+  display: flex;
+}
+.sisi-2 {
+  /* background-color: rgb(69, 116, 248); */
+  display: flex;
+}
+.sisi-3 {
+  /* background-color: rgb(6, 6, 255); */
+  display: flex;
+}
+.sisi-4 {
+  /* background-color: rgb(90, 30, 210); */
+  display: flex;
+}
+.sisi-5 {
+  /* background-color: rgb(90, 30, 210); */
+  display: flex;
+}
