@@ -1,101 +1,168 @@
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b);
+  font-family: sans-serif;
+  animation: fadeIn 1s ease-in-out;
 }
 
 #calculator {
-  background-color: black;
+  background: #1e3a8a; /* biru card */
   display: flex;
   flex-direction: column;
-  /* padding: 10px; */
-  /* padding: 5px; */
-  /* height: 300px; */
   border-radius: 20px;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  animation: fadeInUp 0.8s ease-in-out;
 }
 
+/* layar kalkulator */
 .container {
-  padding-left: 10px;
-  border-radius: 10px;
-  padding: 10px;
-  /* width: 400px; */
-  height: 300px;
+  border-radius: 12px;
+  padding: 15px;
+  height: 100px;
   color: #ffffff;
+  background: #1e293b;
   display: flex;
   text-align: end;
   justify-content: right;
-  /* flex-direction: column; */
   align-items: flex-end;
+  font-size: 2rem;
+  overflow-x: auto;
+  margin-bottom: 15px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+  animation: screenFade 0.4s ease-in-out;
 }
+
+/* tombol */
 button {
-  margin: 10px;
-  padding: 5px;
-  width: 100px;
-  height: 100px;
-  /* color: rgb(255, 255, 255); */
-  /* background-color: black; */
-  border-radius: 18px;
-  background: #0a0a0a;
+  margin: 6px;
+  width: 80px;
+  height: 80px;
+  border-radius: 15px;
+  background: #334155;
   color: #ffffff;
-  box-shadow: 1px 1px 5px #b1b1b1, -5px -5px 10px #ffffff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.4),
+              -2px -2px 5px rgba(255,255,255,0.05);
 }
-.pengaturan {
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* height: 300px; */
-  width: 400px;
-  height: 100px;
-  border-radius: 20px;
-  background-color: #f7f4f4;
+
+/* hover */
+button:hover {
+  background: #475569;
+  transform: scale(1.05);
 }
+
+/* klik (efek glow biru) */
+button:active {
+  transform: scale(0.9);
+  background: #2563eb;
+  box-shadow: 0 0 15px #3b82f6, inset 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+/* glow flash saat fokus */
+button:focus {
+  outline: none;
+  animation: glow 0.4s ease-in-out;
+}
+
+/* tombol khusus */
 .nol {
-  padding: 30px !important;
+  flex: 2;
+  height: 75px;
 }
 .titik {
-  padding: 30px !important;
-  background-color: #f9f100;
-  color: #020202;
+  background-color: #facc15; /* kuning */
+  color: #1e1e1e;
 }
 .sama {
-  padding: 40px !important;
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
+  background-color: #22c55e; /* hijau */
+  color: white;
 }
-.clear{
-  background-color: #ff0000;;
+.clear {
+  background-color: #ef4444; /* merah */
+  color: white;
 }
-.multiplication{
-  background-color: #f5ed03;
-  color: #000000;
+.multiplication,
+.less,
+.plus,
+.division {
+  background-color: #3b82f6; /* biru terang */
+  color: #ffffff;
 }
-.less{
-  background-color: #f9f100;
-  color: #000000;
-}
-.plus{
-  background-color: #f9f100;
-  color: #000000;
-}
-.division{
-  background-color: #f9f100;
-  color: #0a0a0a;
-}
-.sisi-1 {
-  /* background-color: rgb(127, 148, 252); */
-  display: flex;
-}
-.sisi-2 {
-  /* background-color: rgb(69, 116, 248); */
-  display: flex;
-}
-.sisi-3 {
-  /* background-color: rgb(6, 6, 255); */
-  display: flex;
-}
-.sisi-4 {
-  /* background-color: rgb(90, 30, 210); */
-  display: flex;
-}
+
+/* layout baris */
+.sisi-1,
+.sisi-2,
+.sisi-3,
+.sisi-4,
 .sisi-5 {
-  /* background-color: rgb(90, 30, 210); */
   display: flex;
+  justify-content: center;
+}
+
+/* 📱 versi mobile */
+@media (max-width: 600px) {
+  #calculator {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .container {
+    font-size: 1.5rem;
+    height: 80px;
+  }
+
+  button {
+    width: 60px;
+    height: 60px;
+    font-size: 1.1rem;
+    margin: 5px;
+  }
+
+  .nol {
+    flex: 2;
+    height: 60px;
+  }
+}
+
+/* animasi */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes glow {
+  0% { box-shadow: 0 0 5px #3b82f6; }
+  50% { box-shadow: 0 0 20px #60a5fa; }
+  100% { box-shadow: 0 0 5px #3b82f6; }
+}
+@keyframes screenFade {
+  from {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

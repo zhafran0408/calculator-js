@@ -4,10 +4,81 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./calculator.css" />
-    <title>calculator</title>
+    <title>Calculator </title>
+<link rel="shortcut icon" href="./logo (1).png" type="image/x-icon">
+    
+
+    <style>
+      /* overlay welcome */
+      #welcome {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0d1b2a, #1b263b);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        z-index: 100;
+        animation: fadeIn 1s ease-in-out;
+        text-align: center;
+      }
+      #welcome img {
+        width: 100px;
+        margin-bottom: 20px;
+        animation: bounce 1.5s infinite;
+      }
+      #welcome h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      #welcome p {
+        margin-bottom: 20px;
+      }
+      #welcome button {
+        padding: 12px 25px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        background: #3b82f6;
+        color: white;
+        transition: all 0.3s;
+      }
+      #welcome button:hover {
+        background: #2563eb;
+        transform: scale(1.05);
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+    </style>
   </head>
   <body>
-    <section id="calculator">
+    <!-- Halaman Welcome -->
+    <div id="welcome">
+      <!-- Logo calculator (pakai emoji atau gambar) -->
+      <img src="./calculator-part-2-svgrepo-com.svg" alt="Calculator Logo" />
+      <h1>Selamat Datang di Calculator</h1>
+      <p>Silahkan klik tombol di bawah untuk mulai</p>
+      <button onclick="startCalculator()">click</button>
+    </div>
+
+    <!-- Kalkulator -->
+    <section id="calculator" style="display:none;">
       <nav class="container">
         <div id="value">0</div>
       </nav>
@@ -43,10 +114,10 @@
         </div>
       </div>
     </section>
+
     <script>
       const display = document.getElementById("value");
 
-      // const display = document.getElementById("value");
       function pengaturan(value) {
         if (display.innerText === "0") {
           display.innerText = value;
@@ -57,22 +128,31 @@
 
       function Clear() {
         display.innerText = "";
-        console.log("terhapus");
       }
 
-      function Pembagian (value){
+      function Pembagian(value) {
         display.innerText += value;
-        console.log("Terbagi");
       }
+
       function Hasil() {
-  try {
-    // Menggunakan innerText bukan value
-    display.innerText = eval(display.innerText);
-  } catch {
-    display.innerText = 'Error'; // Jika terjadi error
-  }
-}
-  
+        try {
+          display.innerText = eval(display.innerText);
+        } catch {
+          display.innerText = "Error";
+        }
+      }
+
+      // fungsi untuk buka kalkulator
+      function startCalculator() {
+        const welcome = document.getElementById("welcome");
+        const calculator = document.getElementById("calculator");
+
+        welcome.style.animation = "fadeOut 0.8s forwards";
+        setTimeout(() => {
+          welcome.style.display = "none";
+          calculator.style.display = "block";
+        }, 800);
+      }
     </script>
   </body>
 </html>
