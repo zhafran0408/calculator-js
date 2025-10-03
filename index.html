@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./calculator.css" />
-    <title>Calculator </title>
-<link rel="shortcut icon" href="./logo (1).png" type="image/x-icon">
-    
+    <title>BlueCalc</title>
+    <link rel="shortcut icon" href="./logo (1).png" type="image/x-icon" />
 
     <style>
       /* overlay welcome */
@@ -54,16 +53,29 @@
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
       @keyframes fadeOut {
-        from { opacity: 1; }
-        to { opacity: 0; }
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
       }
       @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
       }
     </style>
   </head>
@@ -72,13 +84,13 @@
     <div id="welcome">
       <!-- Logo calculator (pakai emoji atau gambar) -->
       <img src="./calculator-part-2-svgrepo-com.svg" alt="Calculator Logo" />
-      <h1>Selamat Datang di Calculator</h1>
+      <h1>Selamat Datang di BlueCalc</h1>
       <p>Silahkan klik tombol di bawah untuk mulai</p>
       <button onclick="startCalculator()">click</button>
     </div>
 
     <!-- Kalkulator -->
-    <section id="calculator" style="display:none;">
+    <section id="calculator" style="display: none">
       <nav class="container">
         <div id="value">0</div>
       </nav>
