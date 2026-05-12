@@ -1,170 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./calculator.css" />
-    <title>BlueCalc</title>
-    <link rel="shortcut icon" href="./logo (1).png" type="image/x-icon" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./calculator.css" />
+</head>
+<body>
+  <div id="welcome">
+  <img src="./calculator-part-2-svgrepo-com.svg" alt="Logo" />
+  <h1>BlueCalc</h1>
+  <p style="opacity: 0.7; margin-bottom: 30px;">Cerdas, Cepat, Presisi.</p>
+  <button onclick="startCalculator()">Mulai Berhitung</button>
+</div>
 
-    <style>
-      /* overlay welcome */
-      #welcome {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #0d1b2a, #1b263b);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        color: white;
-        z-index: 100;
-        animation: fadeIn 1s ease-in-out;
-        text-align: center;
-      }
-      #welcome img {
-        width: 100px;
-        margin-bottom: 20px;
-        animation: bounce 1.5s infinite;
-      }
-      #welcome h1 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-      }
-      #welcome p {
-        margin-bottom: 20px;
-      }
-      #welcome button {
-        padding: 12px 25px;
-        font-size: 1rem;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        background: #3b82f6;
-        color: white;
-        transition: all 0.3s;
-      }
-      #welcome button:hover {
-        background: #2563eb;
-        transform: scale(1.05);
-      }
+<section id="calculator" style="display: none">
+  <div id="value">0</div>
+  <div class="grid-container">
+    <button onclick="Clear()" class="clear">C</button>
+    <button onclick="input('%')" class="operator">%</button>
+    <button onclick="input('/')" class="operator">÷</button>
+    <button onclick="deleteLast()" class="operator">⌫</button>
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-      @keyframes fadeOut {
-        from {
-          opacity: 1;
-        }
-        to {
-          opacity: 0;
-        }
-      }
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Halaman Welcome -->
-    <div id="welcome">
-      <!-- Logo calculator (pakai emoji atau gambar) -->
-      <img src="./calculator-part-2-svgrepo-com.svg" alt="Calculator Logo" />
-      <h1>Selamat Datang di BlueCalc</h1>
-      <p>Silahkan klik tombol di bawah untuk mulai</p>
-      <button onclick="startCalculator()">click</button>
-    </div>
+    <button onclick="input('7')">7</button>
+    <button onclick="input('8')">8</button>
+    <button onclick="input('9')">9</button>
+    <button onclick="input('*')" class="operator">×</button>
 
-    <!-- Kalkulator -->
-    <section id="calculator" style="display: none">
-      <nav class="container">
-        <div id="value">0</div>
-      </nav>
-      <div class="pengaturan">
-        <div class="sisi-1">
-          <button onclick="Clear()" class="clear">C</button>
-          <button onclick="pengaturan('+/-')">+/-</button>
-          <button onclick="pengaturan('%')">%</button>
-          <button onclick="Pembagian('/')" class="division">/</button>
-        </div>
-        <div class="sisi-2">
-          <button onclick="pengaturan('7')">7</button>
-          <button onclick="pengaturan('8')">8</button>
-          <button onclick="pengaturan('9')">9</button>
-          <button onclick="pengaturan('*')" class="multiplication">x</button>
-        </div>
-        <div class="sisi-3">
-          <button onclick="pengaturan('4')">4</button>
-          <button onclick="pengaturan('5')">5</button>
-          <button onclick="pengaturan('6')">6</button>
-          <button onclick="pengaturan('-')" class="less">-</button>
-        </div>
-        <div class="sisi-4">
-          <button onclick="pengaturan('1')">1</button>
-          <button onclick="pengaturan('2')">2</button>
-          <button onclick="pengaturan('3')">3</button>
-          <button onclick="pengaturan('+')" class="plus">+</button>
-        </div>
-        <div class="sisi-5">
-          <button onclick="pengaturan('0')" class="nol">0</button>
-          <button onclick="pengaturan('.')" class="titik">.</button>
-          <button onclick="Hasil('=')" class="sama">=</button>
-        </div>
-      </div>
-    </section>
+    <button onclick="input('4')">4</button>
+    <button onclick="input('5')">5</button>
+    <button onclick="input('6')">6</button>
+    <button onclick="input('-')" class="operator">-</button>
 
-    <script>
-      const display = document.getElementById("value");
+    <button onclick="input('1')">1</button>
+    <button onclick="input('2')">2</button>
+    <button onclick="input('3')">3</button>
+    <button onclick="input('+')" class="operator">+</button>
 
-      function pengaturan(value) {
-        if (display.innerText === "0") {
-          display.innerText = value;
-        } else {
-          display.innerText += value;
-        }
-      }
+    <button onclick="input('0')" class="zero">0</button>
+    <button onclick="input('.')">.</button>
+    <button onclick="Hasil()" class="equals">=</button>
+  </div>
+</section>
+<script>
+  const display = document.getElementById("value");
 
-      function Clear() {
-        display.innerText = "";
-      }
+  function input(value) {
+    if (display.innerText === "0" && value !== ".") {
+      display.innerText = value;
+    } else {
+      display.innerText += value;
+    }
+  }
 
-      function Pembagian(value) {
-        display.innerText += value;
-      }
+  function Clear() {
+    display.innerText = "0";
+  }
 
-      function Hasil() {
-        try {
-          display.innerText = eval(display.innerText);
-        } catch {
-          display.innerText = "Error";
-        }
-      }
+  function deleteLast() {
+    if (display.innerText.length > 1) {
+      display.innerText = display.innerText.slice(0, -1);
+    } else {
+      display.innerText = "0";
+    }
+  }
 
-      // fungsi untuk buka kalkulator
-      function startCalculator() {
-        const welcome = document.getElementById("welcome");
-        const calculator = document.getElementById("calculator");
+  function Hasil() {
+    try {
+      // Mengganti simbol visual dengan operator matematika asli
+      let expression = display.innerText.replace(/×/g, '*').replace(/÷/g, '/');
+      display.innerText = eval(expression);
+    } catch {
+      display.innerText = "Error";
+      setTimeout(Clear, 1500);
+    }
+  }
 
-        welcome.style.animation = "fadeOut 0.8s forwards";
-        setTimeout(() => {
-          welcome.style.display = "none";
-          calculator.style.display = "block";
-        }, 800);
-      }
-    </script>
-  </body>
+  function startCalculator() {
+    const welcome = document.getElementById("welcome");
+    const calculator = document.getElementById("calculator");
+
+    welcome.style.animation = "fadeOut 0.5s forwards";
+    setTimeout(() => {
+      welcome.style.display = "none";
+      calculator.style.display = "block";
+      // Animasi muncul untuk kalkulator
+      calculator.style.animation = "fadeIn 0.5s ease-in";
+    }, 500);
+  }
+</script>
+</body>
 </html>
