@@ -1,115 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;600&display=swap');
+:root {
+    --bg: #e0e5ec;
+    --text: #44476a;
+    --blue: #3b82f6;
+    --shadow-l: #ffffff;
+    --shadow-d: #a3b1c6;
+}
+
+[data-theme="dark"] {
+    --bg: #1e293b;
+    --text: #f1f5f9;
+    --blue: #60a5fa;
+    --shadow-l: #2d3a4f;
+    --shadow-d: #0f172a;
+}
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
 }
 
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: #020617; /* Hitam pekat modern */
-    overflow: hidden;
+    background-color: var(--bg);
+    height: 100vh; display: flex; justify-content: center; align-items: center;
 }
 
-/* Container Kalkulator - Gaya Cyberpunk/Modern */
 #calculator {
-    background: rgba(30, 41, 59, 0.7);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 35px;
-    width: 350px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 
-                inset 0 0 15px rgba(59, 130, 246, 0.1);
-    animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    width: 340px; padding: 25px; background: var(--bg); border-radius: 45px;
+    box-shadow: 20px 20px 60px var(--shadow-d), -20px -20px 60px var(--shadow-l);
 }
 
-/* Layar Display - Dibuat Mirip Gadget Canggih */
-#value {
-    background: #0f172a;
-    color: #3b82f6; /* Warna font biru neon */
-    font-family: 'Orbitron', sans-serif; /* Font digital */
-    font-size: 2.5rem;
-    height: 100px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 25px;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,1);
-    border: 1px solid rgba(59, 130, 246, 0.3);
-    overflow: hidden;
-    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-}
+.calc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 
-/* Pengaturan Baris Tombol */
-.sisi-1, .sisi-2, .sisi-3, .sisi-4, .sisi-5 {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
-}
-
-/* Desain Tombol Global */
-button {
-    width: 70px;
-    height: 70px;
-    border-radius: 18px;
-    border: none;
-    font-size: 1.2rem;
-    font-weight: 600;
+/* --- THEME TOGGLE TRACK --- */
+.theme-toggle {
+    position: relative;
+    width: 78px; height: 38px;
+    background: var(--bg);
+    border-radius: 30px;
+    box-shadow: inset 4px 4px 8px var(--shadow-d), inset -4px -4px 8px var(--shadow-l);
     cursor: pointer;
-    background: #1e293b;
-    color: #f1f5f9;
-    transition: all 0.2s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 0 #0f172a; /* Efek 3D */
+    display: flex; align-items: center; 
+    justify-content: space-between;
+    padding: 0 10px;
 }
 
-button:hover {
-    background: #334155;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 #0f172a;
+/* --- THE SLIDING PILL (Buletan yang lari) --- */
+.toggle-pill {
+    position: absolute;
+    left: 6px;
+    width: 30px; height: 30px;
+    background: var(--bg);
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px var(--shadow-d), -2px -2px 5px var(--shadow-l);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1;
 }
 
-button:active {
-    transform: translateY(2px);
-    box-shadow: 0 0 0 #0f172a;
-    background: #2563eb;
+/* Geser pill ke kanan (Matahari) pas LIGHT MODE */
+body:not([data-theme="dark"]) .toggle-pill {
+    transform: translateX(36px);
 }
 
-/* Warna Khusus Agar Berwarna-warni */
-.clear { 
-    background: rgba(239, 68, 68, 0.15); 
-    color: #ef4444; 
-    border: 1px solid #ef4444;
+/* --- ICONS (Diam di tempat) --- */
+.toggle-icon {
+    width: 16px; height: 16px;
+    z-index: 2; /* Di atas pill */
+    color: var(--text);
+    opacity: 0.3;
+    transition: opacity 0.3s, color 0.3s;
 }
 
-.division, .multiplication, .less, .plus {
-    background: #3b82f6;
-    color: white;
-}
+/* Highlight ikon yang lagi "didudukin" sama pill */
+[data-theme="dark"] #moon-icon { opacity: 1; color: var(--blue); }
+body:not([data-theme="dark"]) #sun-icon { opacity: 1; color: #f59e0b; }
 
-.sama {
-    background: #10b981;
-    color: white;
-    box-shadow: 0 4px 0 #064e3b;
-}
+.brand { font-size: 0.75rem; font-weight: 800; color: var(--blue); letter-spacing: 3px; }
 
-.nol {
-    width: 155px; /* Tombol 0 lebih panjang */
-    justify-content: center;
+/* --- DISPLAY & BUTTONS (Sama seperti sebelumnya) --- */
+.display-container {
+    background: var(--bg); padding: 25px; border-radius: 30px; margin-bottom: 30px;
+    min-height: 120px; display: flex; flex-direction: column; justify-content: flex-end;
+    box-shadow: inset 6px 6px 12px var(--shadow-d), inset -6px -6px 12px var(--shadow-l);
 }
-
-/* Animasi Masuk */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
+#current-op { color: var(--blue); font-size: 1rem; min-height: 1.5rem; text-align: right; opacity: 0.6; }
+#value { font-size: 3.5rem; color: var(--text); font-weight: 600; text-align: right; overflow: hidden; line-height: 1; }
+.button-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+button {
+    width: 60px; height: 60px; border-radius: 50%; border: none; background: var(--bg);
+    color: var(--text); font-size: 1.25rem; font-weight: 600; cursor: pointer;
+    box-shadow: 6px 6px 12px var(--shadow-d), -6px -6px 12px var(--shadow-l);
+    display: flex; align-items: center; justify-content: center;
 }
+button:active { box-shadow: inset 4px 4px 8px var(--shadow-d), inset -4px -4px 8px var(--shadow-l); transform: scale(0.96); }
+.btn-top { color: #8a94a6; }
+.btn-op { color: var(--blue); }
+.btn-equal { background: var(--blue); color: white; border-radius: 25px; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3); }
+.btn-zero { grid-column: span 2; width: 100%; border-radius: 30px; }

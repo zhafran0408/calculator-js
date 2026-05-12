@@ -1,93 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./calculator.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueCalc Pro - Sliding Switch</title>
+    <link rel="stylesheet" href="calculator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-  <div id="welcome">
-  <img src="./calculator-part-2-svgrepo-com.svg" alt="Logo" />
-  <h1>BlueCalc</h1>
-  <p style="opacity: 0.7; margin-bottom: 30px;">Cerdas, Cepat, Presisi.</p>
-  <button onclick="startCalculator()">Mulai Berhitung</button>
-</div>
 
-<section id="calculator" style="display: none">
-  <div id="value">0</div>
-  <div class="grid-container">
-    <button onclick="Clear()" class="clear">C</button>
-    <button onclick="input('%')" class="operator">%</button>
-    <button onclick="input('/')" class="operator">÷</button>
-    <button onclick="deleteLast()" class="operator">⌫</button>
+    <main id="calculator">
+        <div class="calc-header">
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <div class="toggle-pill" id="pill"></div>
+                <i data-lucide="moon" class="toggle-icon" id="moon-icon"></i>
+                <i data-lucide="sun" class="toggle-icon" id="sun-icon"></i>
+            </div>
+            <span class="brand">BLUECALC</span>
+        </div>
 
-    <button onclick="input('7')">7</button>
-    <button onclick="input('8')">8</button>
-    <button onclick="input('9')">9</button>
-    <button onclick="input('*')" class="operator">×</button>
+        <div class="display-container">
+            <div id="current-op"></div>
+            <div id="value">0</div>
+        </div>
 
-    <button onclick="input('4')">4</button>
-    <button onclick="input('5')">5</button>
-    <button onclick="input('6')">6</button>
-    <button onclick="input('-')" class="operator">-</button>
+        <div class="button-grid">
+            <button onclick="clearDisplay()" class="btn-top">AC</button>
+            <button onclick="toggleSign()" class="btn-top">+/-</button>
+            <button onclick="deleteLast()" class="btn-top"><i data-lucide="delete"></i></button>
+            <button onclick="appendOperator('/')" class="btn-op">/</button>
 
-    <button onclick="input('1')">1</button>
-    <button onclick="input('2')">2</button>
-    <button onclick="input('3')">3</button>
-    <button onclick="input('+')" class="operator">+</button>
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="appendOperator('*')" class="btn-op">×</button>
 
-    <button onclick="input('0')" class="zero">0</button>
-    <button onclick="input('.')">.</button>
-    <button onclick="Hasil()" class="equals">=</button>
-  </div>
-</section>
-<script>
-  const display = document.getElementById("value");
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="appendOperator('-')" class="btn-op">−</button>
 
-  function input(value) {
-    if (display.innerText === "0" && value !== ".") {
-      display.innerText = value;
-    } else {
-      display.innerText += value;
-    }
-  }
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="appendOperator('+')" class="btn-op">+</button>
 
-  function Clear() {
-    display.innerText = "0";
-  }
+            <button onclick="appendNumber('0')" class="btn-zero">0</button>
+            <button onclick="appendNumber('.')">.</button>
+            <button onclick="calculate()" class="btn-equal">=</button>
+        </div>
+    </main>
 
-  function deleteLast() {
-    if (display.innerText.length > 1) {
-      display.innerText = display.innerText.slice(0, -1);
-    } else {
-      display.innerText = "0";
-    }
-  }
-
-  function Hasil() {
-    try {
-      // Mengganti simbol visual dengan operator matematika asli
-      let expression = display.innerText.replace(/×/g, '*').replace(/÷/g, '/');
-      display.innerText = eval(expression);
-    } catch {
-      display.innerText = "Error";
-      setTimeout(Clear, 1500);
-    }
-  }
-
-  function startCalculator() {
-    const welcome = document.getElementById("welcome");
-    const calculator = document.getElementById("calculator");
-
-    welcome.style.animation = "fadeOut 0.5s forwards";
-    setTimeout(() => {
-      welcome.style.display = "none";
-      calculator.style.display = "block";
-      // Animasi muncul untuk kalkulator
-      calculator.style.animation = "fadeIn 0.5s ease-in";
-    }, 500);
-  }
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
